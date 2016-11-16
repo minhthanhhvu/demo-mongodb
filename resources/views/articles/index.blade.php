@@ -2,8 +2,8 @@
 
 @section('content')
 <h1>Bài viết</h1>
-{!! link_to_route('articles.create','Thêm bài viết') !!}
-<table border="1" cellpadding="5" cellspacing="0">
+{!! link_to_route('articles.create', 'Thêm bài viết', null, ['class'=>'btn btn-primary btn-lg']) !!}
+<table class="table">
 	<tr>
 		<th>Tiêu đề</th>
 		<th>Sửa</th>
@@ -15,7 +15,7 @@
 		<td>{!! link_to_route('articles.edit','Sửa',$article->id) !!}</td>
 		<td>
 		{!! Form::open(['method'=>'DELETE', 'route'=>['articles.destroy',$article->id]]) !!}
-			<button type="submit">Xóa</button>
+			<button type="submit" class="btn btn-warning">Xóa</button>
 		{!! Form::close() !!}
 		</td>
 	</tr>

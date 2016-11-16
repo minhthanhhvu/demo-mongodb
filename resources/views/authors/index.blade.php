@@ -2,8 +2,8 @@
 
 @section('content')
 <h1>Tác giả</h1>
-{!! link_to_route('authors.create','Thêm tác giả') !!}
-<table border="1" cellspacing="0" cellpadding="5">
+{!! link_to_route('authors.create','Thêm tác giả', null, ['class'=>'btn btn-primary btn-lg']) !!}
+<table class="table">
 	<tr>
 		<th>Họ tên</th>
 		<th>Sửa</th>
@@ -15,7 +15,7 @@
 		<td>{!! link_to_route('authors.edit', 'Sửa', $author->id) !!}</td>
 		<td>
 		{!! Form::open(['method'=>'DELETE', 'route'=>['authors.destroy',$author->id]]) !!}
-			<button type="submit">Xóa</button>
+			<button type="submit" class="btn btn-warning">Xóa</button>
 		{!! Form::close() !!}
 		</td>
 	</tr>
