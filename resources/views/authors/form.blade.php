@@ -1,5 +1,5 @@
 <div>
-	{!! Form::label('name', 'Ho ten:') !!}
+	{!! Form::label('name', 'Họ tên:') !!}
 	{!! Form::text('name') !!}
 </div>
 <div>
