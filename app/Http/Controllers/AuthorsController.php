@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
+use Request;
 use App\Author;
 use App\Http\Requests\AuthorRequest;
 
@@ -11,27 +10,62 @@ class AuthorsController extends Controller
 {
     public function index()
 	{
-		return Author::all();
+		$authors = Author::all();
+ 
+        if (Request::wantsJson()) {
+            return $authors;
+        } else {
+            return view('authors.index', compact('authors'));
+        }
+	}
+	
+	public function create()
+	{
+		$author = new Author;
+		if(Request::wantsJson())
+			return $author;
+		else
+			return view('authors.create', compact('author'));
 	}
 	
 	public function store(AuthorRequest $request)
 	{
-		return Author::create($request->all());
+		$author = Author::create($request->all());
+		if(Request::wantsJson())
+			return $author;
+		else
+			return redirect('authors');
 	}
 	
 	public function show(Author $author)
+    {
+        if (Request::wantsJson()) {
+            return $author;
+        } else {
+            return view('authors.show', compact('author'));
+        }
+    }
+	
+	public function edit(Author $author)
 	{
-		return $author;	
+		return view('authors.edit', compact('author'));
 	}
 	
 	public function update(AuthorRequest $request, Author $author)
 	{
 		$author->update($request->all());
-		return $author;
+		if(Request::wantsJson())
+			return $author;
+		else
+			return redirect('authors');
 	}
 	
 	public function destroy(Author $author)
 	{
-		return (string) $author->delete();
+		$deleted = $author->delete();
+		if(Request::wantsJson())
+			return $deleted;
+		else
+			return redirect('authors');
 	}
 }
