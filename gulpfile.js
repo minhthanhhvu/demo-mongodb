@@ -1,5 +1,3 @@
-var elixir = require('laravel-elixir');
-
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -10,7 +8,11 @@ var elixir = require('laravel-elixir');
  | file for our application, as well as publishing vendor resources.
  |
  */
-
+ 
+var elixir = require('laravel-elixir');
+var bowerFiles = require('main-bower-files');
+ 
 elixir(function(mix) {
     mix.sass('app.scss');
+    mix.scripts(bowerFiles('**/*.js'), 'public/js/3rd-party.js', '/');
 });
